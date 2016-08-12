@@ -76,10 +76,6 @@ class Mediator {
 
 		}
 
-		if (!channels[channel]) {
-			return mediator;
-		}
-
 		channels[channel] = channels[channel].filter(mediator.contextFilter, unsubscriber);
 
 		return mediator;

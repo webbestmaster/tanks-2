@@ -7,8 +7,9 @@
     "type": "git"
   },
   "scripts": {
-    "install-global": "npm install -g webpack node-static mocha",
-    "test": "mocha ./tests"
+    "install-global": "npm install -g webpack node-static mocha mochawesome istanbul",
+    "test-unit": "./test-unit.sh",
+    "test-cover": "./test-cover.sh"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
@@ -21,7 +22,9 @@
     "node-static": "*",
     "webpack": "*",
 
-    "mocha": "^2.5.3"
+    "istanbul": "*",
+    "mocha": "*",
+    "mochawesome": "*"
 
   }
 

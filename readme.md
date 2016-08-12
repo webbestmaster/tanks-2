@@ -6,9 +6,12 @@ Used webPack and ES6
 
 npm run install-global
 
-# Run tests
+# Run unit tests
 
-npm test
+npm run test-unit
 
+# Run coverage tests
+
+npm run test-cover
 
 
