@@ -12,7 +12,7 @@ const webpack = require('webpack');
 
 module.exports = {
 
-	context: __dirname + '/frontend',
+	context: __dirname + '/js',
 
 	// entry: './home', // simple variant of 'entry: {..<several entry points>..}'
 	entry: {

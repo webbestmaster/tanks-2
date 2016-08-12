@@ -1,3 +1,14 @@
 # Tanks-2 - HTML5 Game
 
-used webPack and ES6
+Used webPack and ES6
+
+# Installation
+
+npm run install-global
+
+# Run tests
+
+npm test
+
+
+
