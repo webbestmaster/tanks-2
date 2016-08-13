@@ -22,6 +22,44 @@ describe('Mediator', function () {
 		assert.deepEqual(mediator.channels, {}, 'test default property');
 	});
 
+	it('work flow', function () {
+
+		var channels = mediator.channels,
+			testChanelName1 = testChanelName + Math.random(),
+			testChanelName2 = testChanelName + Math.random(),
+			testChanelName3 = testChanelName + Math.random();
+
+		// subscribe to 3 channels
+		mediator.subscribe(testObj, testChanelName1, testObj.method);
+		mediator.subscribe(testObj, testChanelName2, testObj.method);
+		mediator.subscribe(testObj, testChanelName3, testObj.method);
+
+		// unsubscribe from first
+		mediator.unsubscribe(testObj, testChanelName1);
+
+		// check channels
+		assert(channels[testChanelName1].length === 0, 'test subscribers for 1st channel');
+		assert(channels[testChanelName2].length === 1, 'test subscribers for 2nd channel');
+		assert(channels[testChanelName3].length === 1, 'test subscribers for 3rd channel');
+
+		// try to unsubscribe from unexisted channel
+		mediator.unsubscribe(testObj, testChanelName + Math.random());
+
+		// check channels
+		assert(channels[testChanelName1].length === 0, 'test subscribers for 1st channel');
+		assert(channels[testChanelName2].length === 1, 'test subscribers for 2nd channel');
+		assert(channels[testChanelName3].length === 1, 'test subscribers for 3rd channel');
+
+		// try to unsubscribe from unexisted channel
+		mediator.unsubscribe(testObj);
+
+		// check channels
+		assert(channels[testChanelName1].length === 0, 'test subscribers for 1st channel');
+		assert(channels[testChanelName2].length === 0, 'test subscribers for 2nd channel');
+		assert(channels[testChanelName3].length === 0, 'test subscribers for 3rd channel');
+
+	});
+
 	it('subscribe', function () {
 
 		// subscribe first time
@@ -31,12 +69,10 @@ describe('Mediator', function () {
 
 		assert.deepEqual(mediator.channels[testChanelName][0], {context: testObj, callback: testObj.method}, 'test subscriber item');
 
-
 		// subscribe second time
 		mediator.subscribe(testObj, testChanelName, testObj.method);
 
 		assert(mediator.channels[testChanelName].length === 2, 'test channels for next subscriber');
-
 
 	});
 
@@ -71,7 +107,6 @@ describe('Mediator', function () {
 		mediator.publish(testChanelName);
 
 		assert.equal(calledCounterBeforePublish, testObj.calledCounter, 'check called counter in test object');
-
 
 	});
 

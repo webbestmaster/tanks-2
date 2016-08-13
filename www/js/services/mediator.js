@@ -72,11 +72,9 @@ class Mediator {
 				mediator.unsubscribe(unsubscriber, ch);
 			});
 
-			return mediator;
-
+		} else if (channels[channel]) {		// check channel is exist
+			channels[channel] = channels[channel].filter(mediator.contextFilter, unsubscriber);
 		}
-
-		channels[channel] = channels[channel].filter(mediator.contextFilter, unsubscriber);
 
 		return mediator;
 
